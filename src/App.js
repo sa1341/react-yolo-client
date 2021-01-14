@@ -45,13 +45,14 @@ class App extends Component {
   }
 
   handleCreate = () => {
-    const { input, todos } = this.state;
+    const { input, todos, color } = this.state;
     this.setState({
       input: '',
       todos: todos.concat({
         id: this.id++,
         text: input,
         checked: false,
+        color
       })
     });
   }
@@ -70,6 +71,7 @@ class App extends Component {
   }
 
   handleSelectColor = (color) => {
+    console.log('selected Color', color);
     this.setState({
       color
     });
@@ -100,6 +102,7 @@ class App extends Component {
             onKeyPress={handleKeyPress}
             onChange={handleChange}
             onCreate={handleCreate}
+            color={color}
           />)}
         >
           <TodoItemList todos={todos} onToggle={handleToggle} onRemove={handleRemove}/>
