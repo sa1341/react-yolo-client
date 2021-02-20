@@ -1,14 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import Yolo from "layouts/Yolo";
+import LoginForm from "components/Login/LoginForm";
+
+const hist = createBrowserHistory();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter history={hist}>
+      <Switch>
+        <Route path="/yolo" component={Yolo} />
+        <Route path="/test" component={App} />
+        <Route path="/login" component={LoginForm} />
+        <Redirect from="/" to="/yolo/todoList" />
+      </Switch>
+    </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
