@@ -20,12 +20,15 @@ const TodoDatePicker = () => {
   const classes = useStyles();
   const dispatch = useTodoDispatch();
   const [date, setDate] = useState(null);
+  const id = "a79007714@gmail.com";
   const handleChange = (e) => {
     setDate(e.target.value);
   };
   const onClick = async () => {
     try {
-      const response = await axios.get(`/api/v1/todos/${date}`);
+      console.log(date);
+      const data = { date: date };
+      const response = await axios.post(`/api/v1/todos/${id}`, data);
       console.log(response);
       dispatch({ type: "TodoDatePicker", todo: response.data });
     } catch (e) {

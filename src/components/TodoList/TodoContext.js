@@ -19,22 +19,11 @@ function todoReducer(state, action) {
         todo.id === action.id ? { ...todo, isDone: !todo.isDone } : todo
       );
     case "REMOVE":
-      deleteTodoItem(action.id);
       return state.filter((todo) => todo.id !== action.id);
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }
 }
-
-const deleteTodoItem = async (id) => {
-  try {
-    console.log("delete TodoItem", id);
-    const response = await axios.delete(`/api/v1/todos/${id}`);
-    console.log(response);
-  } catch (e) {
-    console.log(e);
-  }
-};
 
 const TodoStateContext = createContext();
 const TodoDispatchContext = createContext();

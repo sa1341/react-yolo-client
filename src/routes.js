@@ -16,7 +16,7 @@ const dashboardRoutes = [
     layout: "/yolo",
   },
   {
-    path: "/Rulette",
+    path: "/roulette",
     name: "오늘 뭐 먹지?",
     rtlName: "Rulette",
     icon: Fastfood,

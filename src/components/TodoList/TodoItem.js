@@ -2,6 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
 import { useTodoDispatch } from "components/TodoList/TodoContext";
+import axios from "axios";
 
 const Remove = styled.div`
   display: flex;
@@ -58,10 +59,21 @@ const Text = styled.div`
     `}
 `;
 
+async function removeTodoItem(id, dispatch) {
+  try {
+    console.log("delete TodoItem", id);
+    const response = await axios.delete(`/api/v1/todos/${id}`);
+    console.log(response);
+    dispatch({ type: "REMOVE", id });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 const TodoItem = ({ id, isDone, text }) => {
   const dispatch = useTodoDispatch();
   const onToggle = () => dispatch({ type: "TOGGLE", id });
-  const onRemove = () => dispatch({ type: "REMOVE", id });
+  const onRemove = () => removeTodoItem(id, dispatch);
 
   return (
     <TodoItemBlock>

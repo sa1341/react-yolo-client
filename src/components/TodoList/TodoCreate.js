@@ -108,6 +108,7 @@ const TodoCreate = () => {
           id: "",
           text: value,
           isDone: false,
+          memberId: "a79007714@gmail.com",
         };
         const response = await axios.post("/api/v1/todos", todo);
         console.log(response);
