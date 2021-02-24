@@ -1,5 +1,4 @@
 import React, { useReducer, createContext, useContext, useRef } from "react";
-import axios from "axios";
 
 const initialTodoItems = [];
 
