@@ -10,14 +10,20 @@ const Arrow = styled.div`
   margin-bottom: 10px;
 `;
 
-const loopAnimation = keyframes`
+const loopAnimation = (totalDeg) => keyframes`
   0% {
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(620deg);
+    transform: rotate(${totalDeg}deg);
   }
 `;
+
+const loopAnimationOptions = {
+  fill: "forwards",
+  duration: "7s",
+  easing: "ease-in-out",
+};
 
 const RouletteTemplateBlock = styled.div`
   width: 700px;
@@ -29,7 +35,8 @@ const RouletteTemplateBlock = styled.div`
   ${(props) =>
     props.rotate &&
     css`
-      animation-name: ${loopAnimation};
+      ${console.log(props.rotate)};
+      animation-name: ${loopAnimation(props.totalDeg)};
       animation-fill-mode: ${props.loopAnimationOptions.fill};
       border: 1px solid #38d9a9;
       animation-duration: ${props.loopAnimationOptions.duration};
@@ -54,18 +61,31 @@ const RouletteButton = styled.div`
   cursor: pointer;
 `;
 
+const BASE_ROTATE_DEG = 7200;
+
 const RouletteTemplate = ({ children }) => {
   const [rotate, setRotate] = useState(false);
-  const rotateRoulette = () => setRotate(!rotate);
+  const [totalDeg, setTotalDeg] = useState(0);
 
+  const rotateRoulette = () => {
+    const selectedIdx = Math.floor(Math.random() * 7);
+    const additionalDeg = 22.5 * (2 * (1 - selectedIdx) + 1);
+    const totalDeg = BASE_ROTATE_DEG + additionalDeg;
+    setTotalDeg(totalDeg);
+    setRotate(!rotate);
+  };
   return (
     <>
       <Container>
         <Arrow />
-        <RouletteTemplateBlock>{children}</RouletteTemplateBlock>
-        <RouletteButton rotate={rotate} onClick={rotateRoulette}>
-          가즈아!!!
-        </RouletteButton>
+        <RouletteTemplateBlock
+          rotate={rotate}
+          loopAnimationOptions={loopAnimationOptions}
+          totalDeg={totalDeg}
+        >
+          {children}
+        </RouletteTemplateBlock>
+        <RouletteButton onClick={rotateRoulette}>가즈아!!!</RouletteButton>
       </Container>
     </>
   );

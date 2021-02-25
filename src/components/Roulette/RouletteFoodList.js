@@ -4,9 +4,7 @@ import RouletteFood from "components/Roulette/RouletteFood";
 
 const RouletteFoodList = () => {
   const rouletteContext = useRouletteState();
-  const foodList = rouletteContext.foodList.map((food) => (
-    <RouletteFood food={food} />
-  ));
+  const foodList = rouletteContext.map((food) => <RouletteFood food={food} />);
   return <>{foodList}</>;
 };
 

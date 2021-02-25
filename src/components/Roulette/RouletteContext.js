@@ -1,17 +1,15 @@
 import React, { useReducer, createContext, useContext } from "react";
 
-const rouletteState = {
-  foodList: [
-    { foodName: "북청", color: "lightcoral", segmentDeg: "0deg" },
-    { foodName: "맥도날드", color: "#dddddd", segmentDeg: "45deg" },
-    { foodName: "제비면가", color: "lightgreen", segmentDeg: "90deg" },
-    { foodName: "소호", color: "lightseagreen", segmentDeg: "135deg" },
-    { foodName: "소공동", color: "#dddddd", segmentDeg: "180deg" },
-    { foodName: "북어천국", color: "lightsalmon", segmentDeg: "225deg" },
-    { foodName: "이태리 김치찌개", color: "lightpink", segmentDeg: "270deg" },
-    { foodName: "굶기", color: "#dddddd", segmentDeg: "315deg" },
-  ],
-};
+const rouletteState = [
+  { foodName: "북청", color: "lightcoral", segmentDeg: "0deg" },
+  { foodName: "맥도날드", color: "#dddddd", segmentDeg: "45deg" },
+  { foodName: "제비면가", color: "lightgreen", segmentDeg: "90deg" },
+  { foodName: "소호", color: "lightseagreen", segmentDeg: "135deg" },
+  { foodName: "소공동", color: "#dddddd", segmentDeg: "180deg" },
+  { foodName: "북어천국", color: "lightsalmon", segmentDeg: "225deg" },
+  { foodName: "이태리 김치찌개", color: "lightpink", segmentDeg: "270deg" },
+  { foodName: "굶기", color: "#dddddd", segmentDeg: "315deg" },
+];
 
 function rouletteReducer(state, action) {
   switch (action.type) {

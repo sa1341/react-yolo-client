@@ -9,7 +9,7 @@ import RouletteApp from "components/Roulette/RouletteApp";
 const dashboardRoutes = [
   {
     path: "/todoList",
-    name: "TodoList",
+    name: "투두리스트",
     rtlName: "TodoList",
     icon: PlaylistAddIcon,
     component: TodoApp,
