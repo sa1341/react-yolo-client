@@ -1,5 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { Edit } from "@material-ui/icons";
+import { useRouletteDispatch } from "components/Roulette/RouletteContext";
 
 const Content = styled.div`
   font-size: 26px;
@@ -33,15 +35,21 @@ const Segment = styled.div`
 `;
 
 const RouletteFood = (props) => {
-  const { foodName, color, segmentDeg } = props.food;
+  const { foodName, color, segmentDeg, isEdit } = props.food;
+  const dispatch = useRouletteDispatch();
   console.log(foodName);
   console.log(color);
   console.log(segmentDeg);
+  console.log(isEdit);
 
   return (
     <>
       <Segment color={color} segmentDeg={segmentDeg}>
-        <Content>{foodName}</Content>
+        <Content>
+          {foodName}
+          <Edit onClick={() => dispatch({ type: "TOGGLE" })}></Edit>
+        </Content>
+        ;
       </Segment>
     </>
   );

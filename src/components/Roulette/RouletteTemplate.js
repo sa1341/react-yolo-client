@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled, { css, keyframes } from "styled-components";
+import { Rocket, RocketLaunch } from "phosphor-react";
 
 const Arrow = styled.div`
   width: 0;
@@ -83,6 +84,8 @@ const RouletteTemplate = ({ children }) => {
           loopAnimationOptions={loopAnimationOptions}
           totalDeg={totalDeg}
         >
+          <Rocket color="red" weight="full" size={80} />
+          <RocketLaunch color="#ff0000" width="4em" height="4em" />
           {children}
         </RouletteTemplateBlock>
         <RouletteButton onClick={rotateRoulette}>가즈아!!!</RouletteButton>

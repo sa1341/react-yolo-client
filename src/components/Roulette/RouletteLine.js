@@ -15,7 +15,6 @@ const Line = styled.div`
 
 const RouletteLine = (props) => {
   const { lineDegs } = props;
-
   const rouletteLines = lineDegs.map((lineDeg) => <Line lineDeg={lineDeg} />);
   return <>{rouletteLines}</>;
 };
