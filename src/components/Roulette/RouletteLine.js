@@ -14,8 +14,11 @@ const Line = styled.div`
 `;
 
 const RouletteLine = (props) => {
+  let count = 0;
   const { lineDegs } = props;
-  const rouletteLines = lineDegs.map((lineDeg) => <Line lineDeg={lineDeg} />);
+  const rouletteLines = lineDegs.map((lineDeg) => (
+    <Line key={count++} lineDeg={lineDeg} />
+  ));
   return <>{rouletteLines}</>;
 };
 

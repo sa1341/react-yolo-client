@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { Edit } from "@material-ui/icons";
 import { useRouletteDispatch } from "components/Roulette/RouletteContext";
+import DoneIcon from "@material-ui/icons/Done";
+import TextField from "@material-ui/core/TextField";
 
 const Content = styled.div`
   font-size: 26px;
@@ -35,24 +37,52 @@ const Segment = styled.div`
 `;
 
 const RouletteFood = (props) => {
-  const { foodName, color, segmentDeg, isEdit } = props.food;
+  const { id, foodName, color, segmentDeg, isEdit } = props.food;
+  const [input, setInput] = useState(foodName);
   const dispatch = useRouletteDispatch();
+
+  console.log(id);
   console.log(foodName);
   console.log(color);
   console.log(segmentDeg);
   console.log(isEdit);
 
+  const onChange = (e) => {
+    const { value } = e.target;
+    setInput(value);
+  };
+
+  const modifyFoodItem = () => {
+    dispatch({ type: "MODIFY", id: id, foodName: input });
+  };
+
   return (
     <>
       <Segment color={color} segmentDeg={segmentDeg}>
-        <Content>
-          {foodName}
-          <Edit onClick={() => dispatch({ type: "TOGGLE" })}></Edit>
-        </Content>
+        {isEdit ? (
+          <Content key={id}>
+            {foodName}
+            <Edit
+              weight="light"
+              onClick={() => dispatch({ type: "TOGGLE", id: id })}
+            ></Edit>
+          </Content>
+        ) : (
+          <>
+            <Content key={id}>
+              <TextField
+                style={{ width: "100px", height: "50px", fontSize: "26px" }}
+                onChange={onChange}
+                value={input}
+              />
+              <DoneIcon onClick={modifyFoodItem} />
+            </Content>
+          </>
+        )}
         ;
       </Segment>
     </>
   );
 };
 
-export default RouletteFood;
+export default React.memo(RouletteFood);
