@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled, { css, keyframes } from "styled-components";
-import { Rocket, RocketLaunch } from "phosphor-react";
 
 const Arrow = styled.div`
   width: 0;
@@ -39,7 +38,6 @@ const RouletteTemplateBlock = styled.div`
       ${console.log(props.rotate)};
       animation-name: ${loopAnimation(props.totalDeg)};
       animation-fill-mode: ${props.loopAnimationOptions.fill};
-      border: 1px solid #38d9a9;
       animation-duration: ${props.loopAnimationOptions.duration};
       animation-timing-function: ${props.loopAnimationOptions.easing};
     `}
@@ -60,6 +58,7 @@ const RouletteButton = styled.div`
   padding: 10px 20px;
   border: 3px solid black;
   cursor: pointer;
+  background: white;
 `;
 
 const BASE_ROTATE_DEG = 7200;
@@ -84,8 +83,6 @@ const RouletteTemplate = ({ children }) => {
           loopAnimationOptions={loopAnimationOptions}
           totalDeg={totalDeg}
         >
-          <Rocket color="red" weight="full" size={80} />
-          <RocketLaunch color="#ff0000" width="4em" height="4em" />
           {children}
         </RouletteTemplateBlock>
         <RouletteButton onClick={rotateRoulette}>가즈아!!!</RouletteButton>

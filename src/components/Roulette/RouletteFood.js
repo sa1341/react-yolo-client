@@ -8,9 +8,9 @@ import TextField from "@material-ui/core/TextField";
 const Content = styled.div`
   font-size: 26px;
   font-weight: bold;
-  width: 260px;
-  height: 260px;
-  position: absolute;
+  width: 280px;
+  height: 288px;
+  position: relative;
   top: 160px;
   left: 80px;
   text-align: center;
@@ -71,7 +71,12 @@ const RouletteFood = (props) => {
           <>
             <Content key={id}>
               <TextField
-                style={{ width: "100px", height: "50px", fontSize: "26px" }}
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  fontSize: "30px",
+                  fontWeight: "bold",
+                }}
                 onChange={onChange}
                 value={input}
               />

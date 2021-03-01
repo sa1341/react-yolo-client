@@ -11,7 +11,7 @@ const rouletteState = [
   {
     id: 1,
     foodName: "맥도날드",
-    color: "#dddddd",
+    color: "LightSlateGray",
     segmentDeg: "45deg",
     isEdit: "false",
   },
@@ -32,7 +32,7 @@ const rouletteState = [
   {
     id: 4,
     foodName: "소공동",
-    color: "#dddddd",
+    color: "lightgoldenrodyellow",
     segmentDeg: "180deg",
     isEdit: "false",
   },
