@@ -19,16 +19,29 @@ const useStyles = makeStyles((theme) => ({
 const TodoDatePicker = () => {
   const classes = useStyles();
   const dispatch = useTodoDispatch();
-  const [date, setDate] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
   const id = "a79007714@gmail.com";
   const handleChange = (e) => {
-    setDate(e.target.value);
+    alert(e.target.name);
+    const currentDateName = e.target.name;
+
+    if (currentDateName === "startDate") {
+      setStartDate(e.target.value);
+    } else {
+      setEndDate(e.target.value);
+    }
   };
+
   const onClick = async () => {
     try {
-      console.log(date);
-      const data = { date: date };
-      const response = await axios.post(`/api/v1/todos/${id}`, data);
+      const response = await axios.get(`/api/v1/todos/${id}`, {
+        params: {
+          selectedStartDate: startDate,
+          selectedEndDate: endDate,
+        },
+      });
       console.log(response);
       dispatch({ type: "TodoDatePicker", todo: response.data });
     } catch (e) {
@@ -44,8 +57,15 @@ const TodoDatePicker = () => {
             <Form.Label>조회할 날짜를 선택하세요.</Form.Label>
             <Form.Control
               type="date"
-              name="dob"
-              placeholder="Date of Birth"
+              name="startDate"
+              placeholder="조회 시작 날짜를 입력하세요"
+              onChange={handleChange}
+            />
+            <b>~</b>
+            <Form.Control
+              type="date"
+              name="endDate"
+              placeholder="조회 종료 날짜를 입력하세요"
               onChange={handleChange}
             />
             <Button

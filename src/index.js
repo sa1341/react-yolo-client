@@ -17,7 +17,7 @@ ReactDOM.render(
         <Route path="/yolo" component={Yolo} />
         <Route path="/test" component={App} />
         <Route path="/login" component={LoginForm} />
-        <Redirect from="/" to="/yolo/todoList" />
+        <Redirect from="/" to="/yolo" />
       </Switch>
     </BrowserRouter>
   </React.StrictMode>,
